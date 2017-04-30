@@ -1,0 +1,24 @@
+<div ng-if="!c.data.error">
+<!-- your widget template -->
+  <h1>
+    {{c.data.asset.name}}
+  </h1>
+  <div class="image-container">
+    <img ng-src="{{c.data.asset.image}}" />
+  </div>
+  <div ng-if="c.data.asset.questions.length">
+    <h2>What went wrong?</h2>
+    <ul class="list-group">
+      <li class="list-group-item"
+          ng-class="{'active': $index == c.selectedIndex}"
+          ng-repeat="question in c.data.asset.questions track by $index"
+          ng-click="c.reportIncident(question, $index)">{{question}}</li>
+      <li class="list-group-item"
+          ng-class="{'active': c.data.asset.questions.length == c.selectedIndex}"
+          ng-click="c.reportIncident(null, c.data.asset.questions.length)">Other</li>
+    </ul>
+  </div>
+</div>
+<div ng-if="c.data.error">
+  <div class="alert alert-danger" role="alert">{{c.data.error}}</div>
+</div>
