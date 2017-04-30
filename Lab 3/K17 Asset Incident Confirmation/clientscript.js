@@ -12,6 +12,15 @@ function(cabrillo) {
 			c.reportIncident();
 		});	
 	}
+	
+	cabrillo.viewLayout.setNavigationBarButtons([{
+		title: 'Save',
+		enabled: true,
+		backgroundColor: '#2d86d5',
+		textColor: '#FFFFFF'
+	}], function() {
+		c.reportIncident();
+	})
 
 	c.reportIncident = function(reason, index) {
 		c.selectedIndex = index;
