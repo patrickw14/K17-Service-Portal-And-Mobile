@@ -1,20 +1,26 @@
-function(cabrillo) {
+function(cabrillo, $timeout) {
   /* widget controller */
   var c = this;
 	
 	c.isNative = cabrillo.isNative();	
-	cabrillo.viewLayout.setBottomButtons([{
-		title: 'Scan Code',
-		imageName: 'scan',
-		enabled: true,
-		backgroundColor: '#2d86d5',
-		textColor: '#FFFFFF'
-	}], function(e) {
-		c.getBarcode();
-	});
+	
+	function setScanButton() {
+		cabrillo.viewLayout.setBottomButtons([{
+			title: 'Scan Code',
+			imageName: 'scan',
+			enabled: true,
+			backgroundColor: '#2d86d5',
+			textColor: '#FFFFFF'
+		}], function(e) {
+			c.getBarcode();
+		});
+	}
+	
+	setScanButton();
 	
 	c.getBarcode = function() {
 		cabrillo.camera.getBarcode().then(function(value) {
+			cabrillo.viewLayout.showSpinner();
 			c.barcode = value;
       c.server.get({
 				action: "get_asset",
@@ -30,20 +36,25 @@ function(cabrillo) {
 		});
 	}
 	
+	c.viewIncidents = function() {
+		cabrillo.navigation.goto("/$m.do#/list/incident?sysparm_query=active%3Dtrue%5Ecaller_id%3Djavascript:gs.user_id()");
+	}
+	
 	function openAssetPageModal(response) {
 		removeButtons();
+		cabrillo.viewLayout.hideSpinner();
 		cabrillo.modal.presentModal("Create Incident", "/$sp.do?id=k17_asset_incident_confirmation&asset=" + response.data.assetID, cabrillo.modal.CLOSE_BUTTON_STYLE_CANCEL, cabrillo.modal.MODAL_PRESENTATION_STYLE_FORM_SHEET).then(function(response) {
 			if (!response) {
-				c.done = true;
-				c.success = false;
+				c.barcode = null;
+				setScanButton();
 			}
 			
 			if (response.results.success === true) {
 				c.done = true;
 				c.success = true;
 			} else {
-				c.done = true;
-				c.success = false;
+				c.barcode = null;
+				setScanButton();
 			}
 		});
 	}
