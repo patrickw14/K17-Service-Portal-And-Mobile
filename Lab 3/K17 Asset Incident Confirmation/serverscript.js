@@ -14,29 +14,13 @@
 		newIncident.setValue("short_description", description);
 		newIncident.insert();
 	} else {
-		var assetCode = $sp.getParameter("asset");
-
-		var assetGR = new GlideRecord("lab_asset");
-		assetGR.addQuery("barcode", assetCode);
-		assetGR.query();
-
-		if (assetGR.next()) {
 			data.asset = {
-				barcode: assetGR.getValue("barcode"),
-				image: assetGR.image.getDisplayValue(),
-				name: assetGR.getValue("title"),
-				questions: []
-			}
-
-			var assetQuestionGR = new GlideRecord("lab_asset_question");
-			assetQuestionGR.addQuery("sys_id", "IN", assetGR.getValue("questions"));
-			assetQuestionGR.query();
-
-			while(assetQuestionGR.next()) {
-				data.asset.questions.push(assetQuestionGR.getValue("question"));
-			}
-		} else {
-			data.error = "Asset not found. Sorry!";
-		}	
+				barcode: "COFFEE_MACHINE_1011",
+				image: "https://agreatcoffeemachines.files.wordpress.com/2015/07/15.jpg",
+				name: "Coffee Machine",
+				questions: ["The machine is broken",
+									 "The coffee isn't hot enough",
+									 "I prefer tea"]
+			};
 	}
 })();
