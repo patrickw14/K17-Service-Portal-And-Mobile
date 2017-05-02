@@ -1,0 +1,17 @@
+<div ng-if="!c.loaded">
+  <button class="btn btn-primary btn-lg get-location-btn"
+          ng-click="c.getLocation()">
+    Get Location
+  </button>
+</div>
+
+<div ng-if="c.loaded" class="container">
+  <h1>Select your address</h1>
+
+  <ul class="list-group">
+    <li class="list-group-item"
+        ng-class="{'active': $index == c.selectedIndex}"
+        ng-repeat="addressObj in c.addressList track by $index"
+        ng-click="c.selectAddress(addressObj.formatted_address, $index)">{{addressObj.formatted_address}}</li>
+  </ul>
+</div>
