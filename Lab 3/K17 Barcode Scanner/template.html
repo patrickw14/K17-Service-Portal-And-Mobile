@@ -8,18 +8,14 @@
       <p>Click below to scan the QR code for your broken appliance.</p>
       <k17-arrow></k17-arrow>
     </div>
-    
-    <!-- Loading state - waiting for asset modal to open up -->
-    <div ng-if="c.barcode && !c.done">
-      <h1>
-        Loading...
-      </h1>
-    </div>
 
     <div ng-if="c.done && c.success">
       <h1>
         Success!! Thanks for creating this incident.
       </h1>
+      
+      <button class="btn btn-primary btn-large"
+              ng-click="c.viewIncidents()">View my incidents</button>
     </div>
     
     
