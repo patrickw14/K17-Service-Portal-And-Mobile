@@ -1,18 +1,6 @@
 function(cabrillo) {
   /* widget controller */
   var c = this;
-	
-	if (!c.data.asset.questions.length) {
-		cabrillo.viewLayout.setBottomButtons([{
-			title: 'Report Incident',
-			enabled: true,
-			backgroundColor: '#2d86d5',
-			textColor: '#FFFFFF'
-		}], function(e) {
-			c.reportIncident();
-		});	
-	}
-	
 	cabrillo.viewLayout.setNavigationBarButtons([{
 		title: 'Save',
 		enabled: true,
