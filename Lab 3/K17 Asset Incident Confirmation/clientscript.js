@@ -10,12 +10,16 @@ function(cabrillo) {
 		c.reportIncident();
 	})
 
-	c.reportIncident = function(reason, index) {
-		cabrillo.viewLayout.showSpinner();
+	c.addReason = function(reason, index) {
+		c.reason = reason;
 		c.selectedIndex = index;
+	}
+	
+	c.reportIncident = function() {
+		cabrillo.viewLayout.showSpinner();
 		c.server.get({
 			action: "report_incident",
-			reason: reason,
+			reason: c.reason,
 			assetName: c.data.asset.name
 		}).then(function() {
 			cabrillo.viewLayout.hideSpinner();
