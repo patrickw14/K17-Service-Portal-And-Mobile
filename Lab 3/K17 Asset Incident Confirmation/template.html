@@ -12,10 +12,10 @@
       <li class="list-group-item"
           ng-class="{'active': $index == c.selectedIndex}"
           ng-repeat="question in c.data.asset.questions track by $index"
-          ng-click="c.reportIncident(question, $index)">{{question}}</li>
+          ng-click="c.addReason(question, $index)">{{question}}</li>
       <li class="list-group-item"
           ng-class="{'active': c.data.asset.questions.length == c.selectedIndex}"
-          ng-click="c.reportIncident(null, c.data.asset.questions.length)">Other</li>
+          ng-click="c.addReason(null, c.data.asset.questions.length)">Other</li>
     </ul>
   </div>
 </div>
