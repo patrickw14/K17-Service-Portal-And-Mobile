@@ -4,8 +4,6 @@ function(cabrillo) {
 	cabrillo.viewLayout.setNavigationBarButtons([{
 		title: 'Save',
 		enabled: true,
-		backgroundColor: '#2d86d5',
-		textColor: '#FFFFFF'
 	}], function() {
 		c.reportIncident();
 	})
