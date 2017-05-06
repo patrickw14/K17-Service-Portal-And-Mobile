@@ -43,7 +43,7 @@ function(cabrillo, $timeout) {
 	function openAssetPageModal(response) {
 		removeButtons();
 		cabrillo.viewLayout.hideSpinner();
-		cabrillo.modal.presentModal("Create Incident", "/$sp.do?id=k17_asset_incident_confirmation&asset=" + response.data.assetID, cabrillo.modal.CLOSE_BUTTON_STYLE_CANCEL, cabrillo.modal.MODAL_PRESENTATION_STYLE_FORM_SHEET).then(function(response) {
+		cabrillo.modal.presentModal("Confirm Incident", "/$sp.do?id=k17_asset_incident_confirmation&asset=" + response.data.assetID, cabrillo.modal.CLOSE_BUTTON_STYLE_CANCEL, cabrillo.modal.MODAL_PRESENTATION_STYLE_FORM_SHEET).then(function(response) {
 			if (!response) {
 				c.barcode = null;
 				setScanButton();
