@@ -14,6 +14,9 @@ function(cabrillo) {
 				c.addressList = response.data.addressList.filter(function(address) {
 					return address.types.includes("street_address");
 				});
+				
+				if (c.addressList.length == 0)
+					c.addresList.push({formatted_address: "9800 International Dr, Orlando, FL 32819"});
 
 				c.loaded = true;
 			})
