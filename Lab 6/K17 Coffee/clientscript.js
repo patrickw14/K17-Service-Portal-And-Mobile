@@ -16,7 +16,7 @@ function(cabrillo) {
 				});
 				
 				if (c.addressList.length == 0)
-					c.addresList.push({formatted_address: "9800 International Dr, Orlando, FL 32819"});
+					c.addressList.push({formatted_address: "9800 International Dr, Orlando, FL 32819"});
 
 				c.loaded = true;
 			})
