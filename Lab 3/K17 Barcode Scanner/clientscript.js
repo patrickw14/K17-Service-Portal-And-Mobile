@@ -37,7 +37,10 @@ function(cabrillo, $timeout) {
 	}
 	
 	c.viewIncidents = function() {
-		cabrillo.navigation.goto("/$m.do#/list/incident?sysparm_query=active%3Dtrue%5Ecaller_id%3Djavascript:gs.user_id()");
+		cabrillo.navigation.goto("", {
+		    table: 'incident',
+		    query: 'active=true^caller_id=javascript:gs.user_id()'
+		});
 	}
 	
 	function openAssetPageModal(response) {
