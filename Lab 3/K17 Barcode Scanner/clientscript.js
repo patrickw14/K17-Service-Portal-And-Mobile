@@ -7,7 +7,6 @@ function(cabrillo, $timeout) {
 	function setScanButton() {
 		cabrillo.viewLayout.setBottomButtons([{
 			title: 'Scan Code',
-			imageName: 'scan',
 			enabled: true,
 			backgroundColor: '#2d86d5',
 			textColor: '#FFFFFF'
